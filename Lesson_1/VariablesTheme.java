@@ -11,11 +11,6 @@ public class VariablesTheme {
         double weight = 1.8;
         char plug = 'C';
         boolean isGame = true;
-        String answerIsGame;
-        if(isGame)
-            answerIsGame = "Да";
-        else
-            answerIsGame = "Нет";
 
         System.out.println("Общее количество ядер: " + quantityCore);
         System.out.println("Объем оперативной памяти: " + ram);
@@ -24,19 +19,23 @@ public class VariablesTheme {
         System.out.println("Частота процессора: " + frequencyCpu);
         System.out.println("Вес: " + weight);
         System.out.println("Тип вилки: " + plug);
-        System.out.println("игровой: " + answerIsGame);
+        if(isGame) {
+            System.out.println("игровой: Да");
+        } else {
+            System.out.println("игровой: Нет");
+        }
 
         System.out.println("\n2. Расчет стоимости товара со скидкой\n");
 
-        int pen = 100;
-        int book = 200;
-        float sale = 0.11f;
-        int summ = pen + book;
-        float summSale = (float) summ * sale;
-        float total = summ - summSale;
+        int costOfPen = 100;
+        int costOfBook = 200;
+        float discount = 0.11f;
+        int sum = costOfPen + costOfBook;
+        float discountSum = (float) sum * discount;
+        float total = sum - discountSum;
 
-        System.out.println("Общая стоимость товаров без скидки: " + summ);
-        System.out.println("Сумма скидки: " + summSale);
+        System.out.println("Общая стоимость товаров без скидки: " + sum);
+        System.out.println("Сумма скидки: " + discountSum);
         System.out.println("Общая стоимость товаров со скидкой: " + total);
 
         System.out.println("\n3. Вывод слова JAVA\n");
@@ -46,24 +45,15 @@ public class VariablesTheme {
 
         System.out.println("\n4. Вывод min и max значений целых числовых типов\n");
 
-        byte num1 = 127;
-        short num2 = 32767;
-        int num3 = 2147483647;
-        long num4 = 9223372036854775807L;
+        byte maxByte = 127;
+        short maxShort = 32767;
+        int maxInt = 2147483647;
+        long maxLong = 9223372036854775807L;
 
-
-        System.out.println(num1);
-        System.out.println(num1++);
-        System.out.println(num1--);
-        System.out.println("\n" + num2);
-        System.out.println(num2++);
-        System.out.println(num2--);
-        System.out.println("\n" + num3);
-        System.out.println(num3++);
-        System.out.println(num3--);
-        System.out.println("\n" + num4);
-        System.out.println(num4++);
-        System.out.println(num4--);
+        System.out.println(maxByte + "\n" + maxByte++ + "\n" + maxByte--);
+        System.out.println("\n" + maxShort + "\n" + maxShort++ + "\n" + maxShort--);
+        System.out.println("\n" + maxInt + "\n" + maxInt++ + "\n" + maxInt--);
+        System.out.println("\n" + maxLong + "\n" + maxLong++ + "\n" + maxLong--);
 
         System.out.println("\n5. Перестановка значений переменных\n");
 
@@ -93,38 +83,32 @@ public class VariablesTheme {
 
         System.out.println("\n6. Вывод символов и их кодов\n");
 
-        char char1 = '#';
-        char char2 = '&';
-        char char3 = '@';
-        char char4 = '^';
-        char char5 = '_';
+        char numberSign = '#';
+        char ampersand = '&';
+        char atSymbol = '@';
+        char circumflex = '^';
+        char underscore = '_';
 
-        int numChar1 = (int) char1;
-        int numChar2 = (int) char2;
-        int numChar3 = (int) char3;
-        int numChar4 = (int) char4;
-        int numChar5 = (int) char5;
-        
-        System.out.println(numChar1 + " - " + char1);
-        System.out.println(numChar2 + " - " + char2);
-        System.out.println(numChar3 + " - " + char3);
-        System.out.println(numChar4 + " - " + char4);
-        System.out.println(numChar5 + " - " + char5);
+        System.out.println((int) numberSign + " - " + numberSign);
+        System.out.println((int) ampersand + " - " + ampersand);
+        System.out.println((int) atSymbol + " - " + atSymbol);
+        System.out.println((int) circumflex + " - " + circumflex);
+        System.out.println((int) underscore + " - " + underscore);
 
         System.out.println("\n7. Вывод в консоль ASCII-арт Дюка\n");
 
-        char1 = '/';
-        char2 = '\\';
-        char3 = '(';
-        char4 = ')';
-        char5 = '_';
+        char forwardSlash = '/';
+        char backslash = '\\';
+        char leftParenthesis = '(';
+        char rightParenthesis = ')';
 
-        System.out.println("    " + char1 + char2);
-        System.out.println("   " + char1 + "  " + char2);
-        System.out.println("  " + char1 + char5 + char3 + " " + char4 + char2);
-        System.out.println(" " + char1 + "      " + char2);
-        System.out.println(char1 + "" + char5 + "" + char5 + "" + char5 + "" + char5 +
-            "" + char1 + "" + char2 + "" + char5 + "" + char5 + "" + char2);
+        System.out.println("    " + forwardSlash + backslash);
+        System.out.println("   " + forwardSlash + "  " + backslash);
+        System.out.println("  " + forwardSlash + underscore + leftParenthesis + " " +
+                rightParenthesis + backslash);
+        System.out.println(" " + forwardSlash + "      " + backslash);
+        System.out.println("" + forwardSlash + underscore + underscore + underscore + underscore +
+                forwardSlash + backslash + underscore + underscore + backslash);
 
         System.out.println("\n8. Вывод количества сотен, десятков и единиц числа\n");
 
@@ -132,14 +116,14 @@ public class VariablesTheme {
         int hundred = num / 100;
         int ten = num / 10 % 10;
         int one = num % 10;
-        int summa = hundred + ten + one;
+        sum = hundred + ten + one;
         int multiplication = hundred * ten * one;
 
         System.out.println("Число " + num + " содержит:");
         System.out.println("\t\t" + hundred + " сотен");
         System.out.println("\t\t" + ten + " десятков");
         System.out.println("\t\t" + one + " единиц");
-        System.out.println("Сумма его цифр: " + summa);
+        System.out.println("Сумма его цифр: " + sum);
         System.out.println("Произведение его цифр: " + multiplication);
 
         System.out.println("\n9. Вывод времени\n");
