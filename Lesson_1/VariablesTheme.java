@@ -27,16 +27,16 @@ public class VariablesTheme {
 
         System.out.println("\n2. Расчет стоимости товара со скидкой\n");
 
-        int costOfPen = 100;
-        int costOfBook = 200;
+        int penPrice = 100;
+        int bookPrice = 200;
         float discount = 0.11f;
-        int sum = costOfPen + costOfBook;
+        int sum = penPrice + bookPrice;
         float discountSum = (float) sum * discount;
-        float total = sum - discountSum;
+        float discountPrice = sum - discountSum;
 
         System.out.println("Общая стоимость товаров без скидки: " + sum);
         System.out.println("Сумма скидки: " + discountSum);
-        System.out.println("Общая стоимость товаров со скидкой: " + total);
+        System.out.println("Общая стоимость товаров со скидкой: " + discountPrice);
 
         System.out.println("\n3. Вывод слова JAVA\n");
 
@@ -50,10 +50,10 @@ public class VariablesTheme {
         int maxInt = 2147483647;
         long maxLong = 9223372036854775807L;
 
-        System.out.println(maxByte + "\n" + maxByte++ + "\n" + maxByte--);
-        System.out.println("\n" + maxShort + "\n" + maxShort++ + "\n" + maxShort--);
-        System.out.println("\n" + maxInt + "\n" + maxInt++ + "\n" + maxInt--);
-        System.out.println("\n" + maxLong + "\n" + maxLong++ + "\n" + maxLong--);
+        System.out.println(maxByte + "\n" + (maxByte += 1) + "\n" + (maxByte -= 2));
+        System.out.println("\n" + maxShort + "\n" + (maxShort += 1) + "\n" + (maxShort -= 2));
+        System.out.println("\n" + maxInt + "\n" + (maxInt += 1) + "\n" + (maxInt -= 2));
+        System.out.println("\n" + maxLong + "\n" + (maxLong += 1) + "\n" + (maxLong -= 2));
 
         System.out.println("\n5. Перестановка значений переменных\n");
 
@@ -97,18 +97,18 @@ public class VariablesTheme {
 
         System.out.println("\n7. Вывод в консоль ASCII-арт Дюка\n");
 
-        char forwardSlash = '/';
+        char slash = '/';
         char backslash = '\\';
         char leftParenthesis = '(';
         char rightParenthesis = ')';
 
-        System.out.println("    " + forwardSlash + backslash);
-        System.out.println("   " + forwardSlash + "  " + backslash);
-        System.out.println("  " + forwardSlash + underscore + leftParenthesis + " " +
+        System.out.println("    " + slash + backslash);
+        System.out.println("   " + slash + "  " + backslash);
+        System.out.println("  " + slash + underscore + leftParenthesis + " " +
                 rightParenthesis + backslash);
-        System.out.println(" " + forwardSlash + "      " + backslash);
-        System.out.println("" + forwardSlash + underscore + underscore + underscore + underscore +
-                forwardSlash + backslash + underscore + underscore + backslash);
+        System.out.println(" " + slash + "      " + backslash);
+        System.out.println("" + slash + underscore + underscore + underscore + underscore +
+                slash + backslash + underscore + underscore + backslash);
 
         System.out.println("\n8. Вывод количества сотен, десятков и единиц числа\n");
 
