@@ -50,10 +50,10 @@ public class VariablesTheme {
         int maxInt = 2147483647;
         long maxLong = 9223372036854775807L;
 
-        System.out.println(maxByte + "\n" + (maxByte += 1) + "\n" + (maxByte -= 2));
-        System.out.println("\n" + maxShort + "\n" + (maxShort += 1) + "\n" + (maxShort -= 2));
-        System.out.println("\n" + maxInt + "\n" + (maxInt += 1) + "\n" + (maxInt -= 2));
-        System.out.println("\n" + maxLong + "\n" + (maxLong += 1) + "\n" + (maxLong -= 2));
+        System.out.println(maxByte + "\n" + ++maxByte + "\n" + --maxByte);
+        System.out.println("\n" + maxShort + "\n" + ++maxShort + "\n" + --maxShort);
+        System.out.println("\n" + maxInt + "\n" + ++maxInt + "\n" + --maxInt);
+        System.out.println("\n" + maxLong + "\n" + ++maxLong + "\n" + --maxLong);
 
         System.out.println("\n5. Перестановка значений переменных\n");
 
