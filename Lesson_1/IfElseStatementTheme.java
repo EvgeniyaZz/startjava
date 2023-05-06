@@ -184,12 +184,9 @@ public class IfElseStatementTheme {
         if(large || sumBanknote1 > qualityBanknote1) {
             System.out.println("В банкомате не достаточно средств");
         } else {
-            if(sumBanknote1 <= qualityBanknote1) {
-                totalQuality1 = sumBanknote1;
-            } 
-            if(sumBanknote10 <= qualityBanknote10) {
-                totalQuality10 = sumBanknote10;
-            } else {
+            totalQuality1 = sumBanknote1;
+            totalQuality10 = sumBanknote10;
+            if(sumBanknote10 > qualityBanknote10) {
                 totalQuality10 = qualityBanknote10;
                 totalQuality1 += (sumBanknote10 - qualityBanknote10) * 10;
                 if(totalQuality1 > qualityBanknote1) {
@@ -197,9 +194,8 @@ public class IfElseStatementTheme {
                     return;
                 }
             }
-            if(sumBanknote100 <= qualityBanknote100) {
-                totalQuality100 = sumBanknote100;
-            } else {
+            totalQuality100 = sumBanknote100;
+            if(sumBanknote100 > qualityBanknote100) {
                 totalQuality100 = qualityBanknote100;
                 totalQuality10 += (sumBanknote100 - qualityBanknote100) * 10;
                 if(totalQuality10 > qualityBanknote10) {
