@@ -172,40 +172,26 @@ public class IfElseStatementTheme {
         int qualityBanknote1 = 50;
         int qualityBanknote10 = 5;
         int qualityBanknote100 = 10;
-        int totalQuality1 = 0;
-        int totalQuality10 = 0;
-        int totalQuality100 = 0;
-        boolean large =  sum > qualityBanknote1 + (qualityBanknote10 * 10) +
-                (qualityBanknote100 * 100);
-        int sumBanknote1 = sum % 10;
-        int sumBanknote10 = sum % 100 / 10;
-        int sumBanknote100 = sum / 100;
+        boolean large = sum > (qualityBanknote1 + (qualityBanknote10 * 10) +
+                (qualityBanknote100 * 100));
 
-        if(large || sumBanknote1 > qualityBanknote1) {
+        if(large) {
             System.out.println("В банкомате не достаточно средств");
         } else {
-            totalQuality1 = sumBanknote1;
-            totalQuality10 = sumBanknote10;
-            if(sumBanknote10 > qualityBanknote10) {
-                totalQuality10 = qualityBanknote10;
-                totalQuality1 += (sumBanknote10 - qualityBanknote10) * 10;
-                if(totalQuality1 > qualityBanknote1) {
-                    System.out.println("В банкомате не достаточно средств");
-                    return;
-                }
-            }
-            totalQuality100 = sumBanknote100;
-            if(sumBanknote100 > qualityBanknote100) {
+            int totalQuality10 = sum % 100 / 10;
+            int totalQuality100 = sum / 100;
+            if(totalQuality100 > qualityBanknote100) {
+                totalQuality10 += (totalQuality100 - qualityBanknote100) * 10;
                 totalQuality100 = qualityBanknote100;
-                totalQuality10 += (sumBanknote100 - qualityBanknote100) * 10;
-                if(totalQuality10 > qualityBanknote10) {
-                    totalQuality1 += (totalQuality10 - qualityBanknote10) * 10;
-                    totalQuality10 = qualityBanknote10;
-                    if(totalQuality1 > qualityBanknote1) {
-                        System.out.println("В банкомате не достаточно средств");
-                        return;
-                    }
-                }
+            }
+            int totalQuality1 = sum % 10;
+            if(totalQuality10 > qualityBanknote10) {
+                totalQuality1 += (totalQuality10 - qualityBanknote10) * 10;
+                totalQuality10 = qualityBanknote10;
+            }
+            if(totalQuality1 > qualityBanknote1) {
+                System.out.println("В банкомате не достаточно средств");
+                return;
             }
             System.out.println("банкноты номиналом 1 USD: " + totalQuality1 + " шт.");
             System.out.println("банкноты номиналом 10 USD: " + totalQuality10 + " шт.");
