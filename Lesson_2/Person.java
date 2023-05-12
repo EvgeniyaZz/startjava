@@ -22,6 +22,6 @@ public class Person {
     }
 
     void learnJava() {
-            System.out.println(name + "изучает JAVA");
+        System.out.println(name + "изучает JAVA");
     }
 }
