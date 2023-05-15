@@ -3,9 +3,7 @@ public class Calculator {
     private int num1;
     private int num2;
     private char sign;
-    private int result = 1;
-    private String repeat = "yes";
-    private boolean rightSign;
+    private int result;
 
     public void setNum1(int num1) {
         this.num1 = num1;
@@ -15,52 +13,30 @@ public class Calculator {
         this.num2 = num2;
     }
 
-    public char getSign() {
-        return sign;
-    }
-
     public void setSign(char sign) {
-            this.sign = sign;
+        this.sign = sign;
     }
 
     public int getResult() {
-        return result;
-    }
-
-    public boolean getRightSign() {
-        return rightSign;
-    }
-
-    public int calculate() {
         switch(sign) {
-        case '+':
-            rightSign = true;
-            result = num1 + num2;
-            break;
-        case '-':
-            rightSign = true;
-            result = num1 - num2;
-            break;
-        case '*':
-            rightSign = true;
-            result = num1 * num2;
-            break;
-        case '/':
-            rightSign = true;
-            result = num1 / num2;
-            break;
-        case '^':
-            rightSign = true;
-            for(int i = 1; i <= num2; i++) {
-            result *= num1;
-            }
-            break;
-        case '%':
-            rightSign = true;
-            result = num1 % num2;
-            break;
-        default:
-            rightSign = false;
+            case '+':
+                return num1 + num2;
+            case '-':
+                return num1 - num2;
+            case '*':
+                return num1 * num2;
+            case '/':
+                return num1 / num2;
+            case '^':
+                result = 1;
+                for(int i = 1; i <= num2; i++) {
+                    result *= num1;
+                }
+                return result;
+            case '%':
+                return num1 % num2;
+            default:
+                System.out.println("Введенная математическая операция не поддерживается.");
         }
         return result;
     }
