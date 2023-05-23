@@ -14,8 +14,8 @@ public class JaegerTest {
         Jaeger jaeger2 = new Jaeger("Crimson Typhoon", "Mark-4", "China", 76.2f, 1.722f, 8, 6);
 
         System.out.println("Модели: " + jaeger1.getModelName() + " и " + jaeger2.getModelName());
-        System.out.println(jaeger1.getValues());
-        System.out.println(jaeger2.getValues());
+        System.out.println(jaeger1.toString());
+        System.out.println(jaeger2.toString());
 
         if(jaeger1.getOrigin() == jaeger2.getOrigin()) {
             System.out.println("Роботы произведены в одной стране");

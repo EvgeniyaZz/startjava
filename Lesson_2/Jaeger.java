@@ -10,8 +10,8 @@ public class Jaeger {
 
     public Jaeger() {}
 
-    public Jaeger(String modelName, String mark, String origin, float height, float weight,
-        int strength, int armor) {
+    public Jaeger(String modelName, String mark, String origin, float height,
+            float weight, int strength, int armor) {
         this.modelName = modelName;
         this.mark = mark;
         this.origin = origin;
@@ -19,17 +19,6 @@ public class Jaeger {
         this.weight = weight;
         this.strength = strength;
         this.armor = armor;
-    }
-
-    public void move() {
-        System.out.println(modelName + " - движение активировано");
-    }
-
-    public String getValues() {
-        String values = modelName + ": \nMark - " + mark + "\nOrigin - " + origin + "\nHeight - "
-                + height + "\nWeight - " + weight + "\nStrength - " + strength + "\nArmor - "
-                + armor;
-        return values;
     }
 
     public String getModelName() {
@@ -70,5 +59,15 @@ public class Jaeger {
 
     public void setArmor(int armor) {
         this.armor = armor;
+    }
+
+    public void move() {
+        System.out.println(modelName + " - движение активировано");
+    }
+
+    public String toString() {
+        return modelName + ": \nMark - " + mark + "\nOrigin - " + origin + "\nHeight - "
+                + height + "\nWeight - " + weight + "\nStrength - " + strength + "\nArmor - "
+                + armor;
     }
 }
