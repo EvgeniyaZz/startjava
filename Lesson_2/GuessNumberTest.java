@@ -9,12 +9,12 @@ public class GuessNumberTest {
         Player player1 = new Player(console.next());
         System.out.print("Введите имя второго игрока: ");
         Player player2 = new Player(console.next());
-        GuessNumber players = new GuessNumber(player1, player2);
+        GuessNumber game = new GuessNumber(player1, player2);
 
         String repeat;
         do {
             System.out.println("Угадайте число, которое загадал компьютер");
-            players.play();
+            game.play();
             do {
                 System.out.print("Хотите продолжить игру? [yes/no]: ");
                 repeat = console.next();
