@@ -27,6 +27,7 @@ public class GuessNumber {
                 System.out.println("число " + player1.getNumber() + " меньше того, " +
                         "что загадал компьютер");
             }
+            
             System.out.print(player2.getName() + ", введите число: ");
             player2.setNumber(console.nextInt());
             if(player2.getNumber() == secretNum) {
