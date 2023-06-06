@@ -2,87 +2,88 @@ package com.startjava.lesson_2_3_4.array;
 
 import java.util.Arrays;
 
-import java.lang.String;
-
 public class ArrayTheme {
 
     public static void main(String[] args) {
-        reverse();
-        multiplication();
-        deleteElement();
+        reverseElementArray();
+        multiplyElementArray();
+        deleteElementArray();
         showElementArray();
-        generate();
-        copy();
+        generateElementArray();
+        copyElementArray();
     }
 
-    private static void reverse() {
+    private static void reverseElementArray() {
         System.out.println("1. Реверс значений массива.");
         int[] numbers = {5, 2, 6, 1, 3, 7, 4};
 
         System.out.println("Исходный массив: ");
-        showArray(numbers);
+        showElementArray(numbers);
 
         int length = numbers.length;
         for(int i = 0; i < length / 2; i++) {
             int number = numbers[i];
-            numbers[i] = numbers[length - 1 - i];
-            numbers[length - 1 - i] = number;
+            length--;
+            numbers[i] = numbers[length];
+            numbers[length] = number;
         }
         System.out.println("\nОбратный массив: ");
-        showArray(numbers);
+        showElementArray(numbers);
     }
 
-    private static void showArray(int[] array) {
+    private static void showElementArray(int[] array) {
         for(int intArray : array) {
             System.out.print(intArray + " ");
         }
     }
 
-    private static void multiplication() {
+    private static void multiplyElementArray() {
         System.out.println("\n\n2. Вывод произведения элементов массива.");
-        int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] digits = new int[10];
+
+        for(int i = 0; i < digits.length; i++) {
+            digits[i] = i;
+        }
+
         int result = 1;
 
         for(int i = 1; i < 9; i++) {
-            result *= numbers[i];
-            System.out.print(numbers[i]);
-            System.out.print(i == 8 ? " = " + result : " * ");
+            result *= digits[i];
+            System.out.print(i == 8 ? digits[i] + " = " + result : digits[i] + " * ");
         }
 
-        System.out.println("\nЧисло с индексом 0 : " + numbers[0] + ", число с индексом 9 : " + numbers[9]);
+        System.out.println("\nЧисло с индексом 0 : " + digits[0] + ", число с индексом 9 : " + digits[9]);
     }
 
-    private static void deleteElement() {
+    private static void deleteElementArray() {
         System.out.println("\n3. Удаление элементов массива.");
 
-        float[] array = new float[15];
-        int length = array.length;
+        float[] floatNumbers = new float[15];
+        int length = floatNumbers.length;
 
         for(int i = 0; i < length; i++) {
-            array[i] = (float) Math.random();
+            floatNumbers[i] = (float) Math.random();
         }
 
-        int middleIndex = length / 2;
-        float floatArr = array[middleIndex];
-
         System.out.println("Исходный массив: ");
-        showArray(array);
+        showElementArray(floatNumbers);
 
         int quantityZero = 0;
 
         for(int i = 0; i < length; i++) {
-            if(array[i] > floatArr) {
-                array[i] = 0;
-                quantityZero += 1;
+            float floatArr = floatNumbers[length / 2];
+            if(floatNumbers[i] > floatArr) {
+                floatNumbers[i] = 0;
+                quantityZero++;
             }
         }
         System.out.println("\nИзмененный массив: ");
-        showArray(array);
+        showElementArray(floatNumbers);
 
         System.out.println("\nКоличество обнуленных ячеек: " + quantityZero);
     }
 
-    private static void showArray(float[] array) {
+    private static void showElementArray(float[] array) {
         for(int i = 0; i < array.length; i++) {
             System.out.printf("%6.3f" , array[i]);
             System.out.print(i == array.length / 2 ? "\n" : " ");
@@ -107,36 +108,36 @@ public class ArrayTheme {
         }
     }
 
-    private static void generate() {
+    private static void generateElementArray() {
         System.out.println("\n5. Генерация уникальных чисел.");
 
-        int[] array = new int[30];
+        int[] uniqNumbers = new int[30];
 
-        for(int i = 0; i < array.length; i++) {
+        for(int i = 0; i < uniqNumbers.length; i++) {
             int intArr = 0;
             boolean same;
             do {
                 same = false;
                 intArr = (int) (Math.random() * 40 + 60);
                 for(int k = 0; k < i; k++){
-                    if(intArr == array[k]) {
+                    if(intArr == uniqNumbers[k]) {
                         same = true;
                         break;
                     }
                 }
             } while(same);
-            array[i] = intArr;
+            uniqNumbers[i] = intArr;
         }
 
-        Arrays.sort(array);
+        Arrays.sort(uniqNumbers);
 
-        for(int i = 0; i < array.length; i++) {
-            System.out.print(array[i]);
+        for(int i = 0; i < uniqNumbers.length; i++) {
+            System.out.print(uniqNumbers[i]);
             System.out.print(i % 10 == 9 ? "\n" : " ");
         }
     }
 
-    private static void copy() {
+    private static void copyElementArray() {
         System.out.println("\n6. Копирование не пустых строк.");
 
         String[] stringsOne = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
@@ -169,12 +170,12 @@ public class ArrayTheme {
         }
 
         System.out.println("Первый массив:");
-        showArray(stringsOne);
+        showElementArray(stringsOne);
         System.out.println("Второй массив:");
-        showArray(stringsTwo);
+        showElementArray(stringsTwo);
     }
 
-    private static void showArray(String[] array) {
+    private static void showElementArray(String[] array) {
         for(int i = 0; i < array.length; i++) {
             System.out.print(i == (array.length - 1) ? array[i] + ".\n" : array[i] + ", ");
         }
