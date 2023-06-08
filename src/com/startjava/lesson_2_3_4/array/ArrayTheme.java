@@ -139,44 +139,50 @@ public class ArrayTheme {
     private static void copyElementsArray() {
         System.out.println("\n6. Копирование не пустых строк.");
 
-        String[] stringsOne = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        String[] srcStrings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
 
-        int quantitiString = 0;
+        int countNonEmptyStrings = 0;
 
-        for(String stringArr : stringsOne) {
-            if (!stringArr.isBlank()) {
-                quantitiString += 1;
+        for(String string : srcStrings) {
+            if (!string.isBlank()) {
+                countNonEmptyStrings++;
             }
         }
 
-        String[] stringsTwo = new String[quantitiString];
-        int indexStringsOne = 0;
-        int indexStringsTwo = 0;
-        quantitiString = 0;
+        String[] nonEmptyStrings = new String[countNonEmptyStrings];
+        int indexSrcStrings = 0;
+        int indexNonEmptyStrings = 0;
+        countNonEmptyStrings = 0;
 
-        for(int i = 0; i < stringsOne.length; i++) {
-            if(stringsOne[i].isBlank()) {
-                System.arraycopy(stringsOne, indexStringsOne, stringsTwo, indexStringsTwo, quantitiString);
-                indexStringsTwo += quantitiString;
-                indexStringsOne += (quantitiString + 1);
-                quantitiString = 0;
+        for(int i = 0; i < srcStrings.length; i++) {
+            if(!srcStrings[i].isBlank()) {
+                 do {
+                    countNonEmptyStrings++;
+                    i++;
+                    if(i == srcStrings.length) {
+                        break;
+                    }
+                } while(!srcStrings[i].isBlank());
+                System.arraycopy(srcStrings, indexSrcStrings, nonEmptyStrings,
+                        indexNonEmptyStrings, countNonEmptyStrings);
+                indexNonEmptyStrings += countNonEmptyStrings;
+                indexSrcStrings += (countNonEmptyStrings + 1);
+                countNonEmptyStrings = 0;
             } else {
-                quantitiString += 1;
-                if(i == (stringsOne.length - 1)) {
-                    System.arraycopy(stringsOne, indexStringsOne, stringsTwo, indexStringsTwo, quantitiString);
-                }
+                indexSrcStrings++;
             }
         }
 
         System.out.println("Первый массив:");
-        show(stringsOne);
+        show(srcStrings);
         System.out.println("Второй массив:");
-        show(stringsTwo);
+        show(nonEmptyStrings);
     }
 
     private static void show(String[] array) {
         for(int i = 0; i < array.length; i++) {
-            System.out.print(i == (array.length - 1) ? array[i] + ".\n" : array[i] + ", ");
+            System.out.print(array[i]);
+            System.out.print(i != (array.length - 1) ? ", " : ".\n");
         }
     }
 }
