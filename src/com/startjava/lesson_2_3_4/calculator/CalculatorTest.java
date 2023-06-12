@@ -8,19 +8,21 @@ public class CalculatorTest {
         Scanner console = new Scanner(System.in);
         Calculator calculator = new Calculator();
 
-        String repeat;
+        String repeat = "yes";
         do {
-            System.out.print("Введите первое число: ");
-            calculator.setNum1(console.nextInt());
-            System.out.print("Введите знак математической операции: ");
-            calculator.setSign(console.next().charAt(0));
-            System.out.print("Введите второе число: ");
-            calculator.setNum2(console.nextInt());
-            System.out.println("Результат: " + calculator.calculate());
-            do {
-                System.out.print("Хотите продолжить вычисления? [yes/no]: ");
-                repeat = console.next();
-            } while((!repeat.equals("yes")) && (!repeat.equals("no")));
-        } while(repeat.equals("yes"));
+            if(repeat.equals("yes")) {
+                console.nextLine();
+                System.out.print("Введите математическое выражение: ");
+                calculator.setMathProblem(console.nextLine());
+                double result = calculator.calculate();
+                if (result % 1 == 0) {
+                    System.out.printf("Результат: %.0f\n", result);
+                } else {
+                    System.out.printf("Результат: %.3f\n", result);
+                }
+            }
+            System.out.print("Хотите продолжить вычисления? [yes/no]: ");
+            repeat = console.next();
+        } while(!repeat.equals("no"));
     }
 }
