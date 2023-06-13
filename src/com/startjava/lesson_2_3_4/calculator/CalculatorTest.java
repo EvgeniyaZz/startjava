@@ -11,18 +11,12 @@ public class CalculatorTest {
         String repeat = "yes";
         do {
             if(repeat.equals("yes")) {
-                console.nextLine();
                 System.out.print("Введите математическое выражение: ");
-                calculator.setMathProblem(console.nextLine());
-                double result = calculator.calculate();
-                if (result % 1 == 0) {
-                    System.out.printf("Результат: %.0f\n", result);
-                } else {
-                    System.out.printf("Результат: %.3f\n", result);
-                }
+                double result = calculator.calculate(console.nextLine());
+                calculator.show(result);
             }
             System.out.print("Хотите продолжить вычисления? [yes/no]: ");
-            repeat = console.next();
+            repeat = console.nextLine();
         } while(!repeat.equals("no"));
     }
 }

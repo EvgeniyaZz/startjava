@@ -2,13 +2,7 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 
-    private String mathProblem;
-
-    public void setMathProblem(String mathProblem) {
-        this.mathProblem = mathProblem;
-    }
-
-    public double calculate() {
+    public double calculate(String mathProblem) {
         String[] mathElements = mathProblem.split(" ");
         int num1 = Integer.parseInt(mathElements[0]);
         int num2 = Integer.parseInt(mathElements[2]);
@@ -29,6 +23,14 @@ public class Calculator {
             default:
                 System.out.println("Введенная математическая операция не поддерживается.");
                 return 0;
+        }
+    }
+
+    public void show(double result) {
+        if (result % 1 == 0) {
+            System.out.printf("Результат: %.0f\n", result);
+        } else {
+            System.out.printf("Результат: %.3f\n", result);
         }
     }
 }
