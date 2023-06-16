@@ -6,17 +6,20 @@ public class CalculatorTest {
 
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
-        Calculator calculator = new Calculator();
 
         String repeat = "yes";
         do {
             if(repeat.equals("yes")) {
                 System.out.print("Введите математическое выражение: ");
-                double result = calculator.calculate(console.nextLine());
-                calculator.show(result);
+                double result = Calculator.calculate(console.nextLine());
+                show(result);
             }
             System.out.print("Хотите продолжить вычисления? [yes/no]: ");
             repeat = console.nextLine();
         } while(!repeat.equals("no"));
+    }
+
+    public static void show(double result) {
+        System.out.printf(result % 1 == 0 ? "Результат: %.0f\n" : "Результат: %.3f\n", result);
     }
 }
