@@ -19,7 +19,7 @@ public class CalculatorTest {
         } while(!repeat.equals("no"));
     }
 
-    public static void show(double result) {
+    private static void show(double result) {
         System.out.printf(result % 1 == 0 ? "Результат: %.0f\n" : "Результат: %.3f\n", result);
     }
 }

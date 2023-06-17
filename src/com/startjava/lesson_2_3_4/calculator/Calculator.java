@@ -4,14 +4,18 @@ public class Calculator {
 
     public static double calculate(String expression) {
         String[] mathElements = expression.split(" ");
+        int num1;
+        int num2;
         try {
-            int num1 = Integer.parseInt(mathElements[0]);
-            int num2 = Integer.parseInt(mathElements[2]);
+            num1 = Integer.parseInt(mathElements[0]);
+            num2 = Integer.parseInt(mathElements[2]);
+        } catch (NumberFormatException e) {
+            System.out.println("Введите корректные значения. Числа должны быть целыми.");
+            return 0;
+        }
 
-            if(num1 <= 0 && num2 <= 0)
-                throw new NumberFormatException();
-
-            return switch(mathElements[1]) {
+        if(num1 > 0 && num2 > 0) {
+            return switch (mathElements[1]) {
                 case "+" -> Math.addExact(num1, num2);
                 case "-" -> Math.subtractExact(num1, num2);
                 case "*" -> Math.multiplyExact(num1, num2);
@@ -23,8 +27,8 @@ public class Calculator {
                     yield 0;
                 }
             };
-        } catch (NumberFormatException e) {
-            System.out.println("Введите корректные значения.");
+        } else {
+            System.out.println("Введите корректные значения. Числа должны быть положительными.");
             return 0;
         }
     }
