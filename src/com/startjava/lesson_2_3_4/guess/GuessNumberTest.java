@@ -13,14 +13,14 @@ public class GuessNumberTest {
         Player player2 = new Player(console.next());
         GuessNumber game = new GuessNumber(player1, player2);
 
-        String repeat;
+        String repeat = "yes";
         do {
-            System.out.println("Угадайте число, которое загадал компьютер");
-            game.play();
-            do {
-                System.out.print("Хотите продолжить игру? [yes/no]: ");
-                repeat = console.next();
-            } while((!repeat.equals("yes")) && (!repeat.equals("no")));
-        } while(repeat.equals("yes"));
+            if(repeat.equals("yes")) {
+                System.out.println("Угадайте число, которое загадал компьютер");
+                game.play();
+            }
+            System.out.print("Хотите продолжить игру? [yes/no]: ");
+            repeat = console.next();
+        } while(!repeat.equals("no"));
     }
 }
