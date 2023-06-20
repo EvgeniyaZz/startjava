@@ -18,27 +18,24 @@ public class Player {
         return name;
     }
 
-    public void setNumber(int index, int number) {
-        numbers[index] = number;
+    public int getNumber() {
+        return numbers[numberTry - 1];
     }
 
-    public void setNumberTry(int numberTry) {
-        this.numberTry = numberTry;
+    public void addNumber(int number) {
+        numbers[numberTry] = number;
+        numberTry++;
     }
-
-    public int getNumber(int index) {
-        return numbers[index];
+    public int[] getNumbers() {
+        return Arrays.copyOf(numbers, numberTry);
     }
 
     public int getNumberTry() {
         return numberTry;
     }
 
-    public int[] getNumbers() {
-        return Arrays.copyOf(numbers, numberTry);
-    }
-
-    public void clearNumbers() {
+    public void clear() {
         Arrays.fill(numbers, 0, numberTry, 0);
+        numberTry = 0;
     }
 }
