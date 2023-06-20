@@ -3,14 +3,12 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Arrays;
 
 public class Player {
-    
+
     private String name;
-    private int number;
 
-    private int numberTry = 0;
+    private int numberTry;
 
-    private int[] numbersPlayer = new int[10];
-    private int[] copyNumbersPlayer;
+    private int[] numbers = new int[10];
 
     public Player(String name) {
         this.name = name;
@@ -20,35 +18,27 @@ public class Player {
         return name;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public void setNumberPlayer(int index) {
-        numbersPlayer[index] = number;
+    public void setNumber(int index, int number) {
+        numbers[index] = number;
     }
 
     public void setNumberTry(int numberTry) {
         this.numberTry = numberTry;
     }
 
-    public int getNumber() {
-        return number;
+    public int getNumber(int index) {
+        return numbers[index];
     }
 
     public int getNumberTry() {
         return numberTry;
     }
 
-    public void setCopyNumbersPlayer() {
-        copyNumbersPlayer = Arrays.copyOf(numbersPlayer, numberTry);
+    public int[] getNumbers() {
+        return Arrays.copyOf(numbers, numberTry);
     }
 
-    public int[] getCopyNumbersPlayer() {
-        return copyNumbersPlayer;
-    }
-
-    public void clearNumbersPlayer() {
-        Arrays.fill(numbersPlayer, 0, numberTry, 0);
+    public void clearNumbers() {
+        Arrays.fill(numbers, 0, numberTry, 0);
     }
 }
