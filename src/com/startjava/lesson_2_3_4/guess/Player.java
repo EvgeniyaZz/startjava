@@ -4,12 +4,14 @@ import java.util.Arrays;
 
 public class Player {
 
-    private String name;
+    private final String name;
+    static final int MAX_NUMBER = 100;
+    static final int MIN_NUMBER = 1;
+    static final int MAX_NUMBER_TRY = 10;
     private int numberTry;
-    private int quantityWins;
+    private int score;
 
-    private int[] numbers = new int[10];
-
+    private final int[] numbers = new int[10];
     public Player(String name) {
         this.name = name;
     }
@@ -22,35 +24,37 @@ public class Player {
         return numbers[numberTry - 1];
     }
 
+    public int[] getNumbers() {
+        return Arrays.copyOf(numbers, numberTry);
+    }
+
     public boolean addNumber(int number) {
-        if(number > 0 && number <= 100) {
+        if(number >= MIN_NUMBER && number <= MAX_NUMBER) {
             numbers[numberTry] = number;
             numberTry++;
             return true;
-        } else {
-            return false;
         }
-    }
-
-    public void setQuantityWins() {
-        quantityWins++;
-    }
-
-    public int[] getNumbers() {
-        return Arrays.copyOf(numbers, numberTry);
+        return false;
     }
 
     public int getNumberTry() {
         return numberTry;
     }
 
-    public int getQuantityWins() {
-        return quantityWins;
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore() {
+        score++;
     }
 
     public void clear() {
         Arrays.fill(numbers, 0, numberTry, 0);
         numberTry = 0;
-        quantityWins = 0;
+    }
+
+    public void clearScore() {
+        score = 0;
     }
 }

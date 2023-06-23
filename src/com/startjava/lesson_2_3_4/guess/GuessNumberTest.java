@@ -6,19 +6,19 @@ public class GuessNumberTest {
 
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
+        GuessNumber game = new GuessNumber();
 
-        System.out.print("Введите имя первого игрока: ");
-        Player player1 = new Player(console.next());
-        System.out.print("Введите имя второго игрока: ");
-        Player player2 = new Player(console.next());
-        System.out.print("Введите имя третьего игрока: ");
-        Player player3 = new Player(console.next());
+        Player[] players = new Player[3];
+        for(int i = 0; i < players.length; i++) {
+            System.out.print("Введите имя " + (i + 1) + "го игрока: ");
+            players[i] = new Player(console.next());
+        }
 
         String repeat = "yes";
         do {
             if(repeat.equals("yes")) {
                 System.out.println("Угадайте число, которое загадал компьютер");
-                GuessNumber.play(player1, player2, player3);
+                game.play(players);
             }
             System.out.print("Хотите продолжить игру? [yes/no]: ");
             repeat = console.next();
