@@ -4,14 +4,15 @@ import java.util.Arrays;
 
 public class Player {
 
-    private final String name;
     static final int MAX_NUMBER = 100;
     static final int MIN_NUMBER = 1;
     static final int MAX_NUMBER_TRY = 10;
+    private final String name;
     private int numberTry;
     private int score;
 
-    private final int[] numbers = new int[10];
+    private final int[] numbers = new int[MAX_NUMBER_TRY];
+
     public Player(String name) {
         this.name = name;
     }
@@ -45,16 +46,16 @@ public class Player {
         return score;
     }
 
-    public void setScore() {
+    public void incrementScore() {
         score++;
+    }
+
+    public void clearScore() {
+        score = 0;
     }
 
     public void clear() {
         Arrays.fill(numbers, 0, numberTry, 0);
         numberTry = 0;
-    }
-
-    public void clearScore() {
-        score = 0;
     }
 }

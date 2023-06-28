@@ -4,13 +4,21 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
-    public void play(Player... players) {
-        castLots(players);
+    static final int QUANTITY_PLAYERS = 3;
+    static final int QUANTITY_ROUNDS = 3;
 
-        final int NUMBER_ROUNDS = 3;
-        for(int i = 0; i < NUMBER_ROUNDS; i++) {
+    Player[] players;
+
+    public GuessNumber(Player... players) {
+        this.players = players;
+    }
+
+    public void play() {
+        castLots();
+
+        for(int i = 0; i < QUANTITY_ROUNDS; i++) {
             int secretNum = Player.MIN_NUMBER + (int) (Math.random() * Player.MAX_NUMBER);
-            System.out.println("Раунд " + (i + 1) + "\nУ каждого игрока по 10 попыток.");
+            System.out.println("Раунд " + (i + 1) + "\nУ каждого игрока - " + Player.MAX_NUMBER_TRY + " попыток.");
 
             boolean different = true;
             do {
@@ -24,19 +32,19 @@ public class GuessNumber {
                 }
             } while (different && players[0].getNumberTry() != Player.MAX_NUMBER_TRY);
 
-            printTries(players);
+            printTries();
 
             for(Player player : players) {
                 player.clear();
             }
         }
-        win(players);
+        checkScore();
     }
 
-    private void castLots(Player[] players) {
+    private void castLots() {
         System.out.println("Бросаем жребий:");
-        for(int i = 0; i < players.length; i++) {
-            int firstPlayer = i + (int) (Math.random() * (players.length - i));
+        for(int i = 0; i < QUANTITY_PLAYERS; i++) {
+            int firstPlayer = i + (int) (Math.random() * (QUANTITY_PLAYERS - i));
             if(firstPlayer != i) {
                 Player player = players[i];
                 players[i] = players[firstPlayer];
@@ -61,7 +69,7 @@ public class GuessNumber {
         if(player.getNumber() == secretNum) {
             System.out.println("Игрок " + player.getName() + " угадал число " +
                     player.getNumber() + " с " + player.getNumberTry() + " попытки.");
-            player.setScore();
+            player.incrementScore();
             return true;
         }
         System.out.print("число " + player.getNumber());
@@ -71,12 +79,12 @@ public class GuessNumber {
     }
 
     private void checkTry(Player player) {
-        if(player.getNumberTry() == Player.MAX_NUMBER_TRY) {
+        if(player.getNumberTry() >= Player.MAX_NUMBER_TRY) {
             System.out.println("У " + player.getName() + " закончились попытки");
         }
     }
 
-    private void printTries(Player[] players) {
+    private void printTries() {
         for(Player player : players) {
             System.out.println("Числа которые ввел игрок " + player.getName());
             for(int number : player.getNumbers()) {
@@ -86,14 +94,32 @@ public class GuessNumber {
         }
     }
 
-    private void win(Player[] players) {
-        for(int i = 0; i < players.length; i++) {
-            if(players[i].getScore() > 1) {
-                System.out.println("По результатам 3х раундов победил игрок " + players[i].getName());
-                break;
+    private void checkScore() {
+        int quantititySameScore = 1;
+        for(int i = 0; i < QUANTITY_PLAYERS - 1; i++) {
+            if(players[i].getScore() == players[i + 1].getScore()) {
+                quantititySameScore++;
             }
-            if(i == players.length - 1) {
-                System.out.println("По результатам 3х раундов - ничья");
+        }
+        if(quantititySameScore == QUANTITY_PLAYERS) {
+            System.out.println("Ничья, победителей нет.");
+        } else {
+            for (int i = QUANTITY_PLAYERS - 1; i > 0; i--) {
+                for (int j = 0; j < i; j++) {
+                    if (players[j].getScore() > players[j + 1].getScore()) {
+                        Player player = players[j];
+                        players[j] = players[j + 1];
+                        players[j + 1] = player;
+                    }
+                }
+            }
+            System.out.println("Победил игрок: \n" + players[QUANTITY_PLAYERS - 1].getName());
+            for (int i = QUANTITY_PLAYERS - 1; i > 0; i--) {
+                if (players[i - 1].getScore() == players[i].getScore()) {
+                    System.out.println(players[i - 1].getName());
+                } else {
+                    break;
+                }
             }
         }
         for(Player player : players) {
