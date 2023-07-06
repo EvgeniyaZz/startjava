@@ -21,13 +21,13 @@ public class Control {
         if(bookshelf.getQuantityBooks() != 0) {
             System.out.println("В шкафу " + bookshelf.getQuantityBooks() + " книги и свободно " +
                     bookshelf.getQuantityFreeShelf() + " полок");
-            for(int i = 0; i < bookshelf.getQuantityBooks(); i++) {
+            for(Book book : bookshelf.getBooks()) {
                 System.out.print("|");
-                System.out.print(bookshelf.getBook(i));
-                System.out.println(" ".repeat((bookshelf.getLengthShelf() - bookshelf.getBook(i).toString().length()))
-                        + "|\n|" + "-".repeat(bookshelf.getLengthShelf()) + "|");
+                System.out.print(book);
+                System.out.println(" ".repeat((bookshelf.getLengthShelf() - book.getLengthInfo())) +
+                        "|\n|" + "-".repeat(bookshelf.getLengthShelf()) + "|");
             }
-            if(bookshelf.getQuantityBooks() < Bookshelf.MAX_QUANTITY_BOOKS) {
+            if(bookshelf.getQuantityBooks() < Bookshelf.CAPACITY) {
                 System.out.println("|" + " ".repeat(bookshelf.getLengthShelf()) + "|");
             }
         } else {
@@ -66,14 +66,14 @@ public class Control {
     }
 
     private static void addBook(Bookshelf bookshelf, Scanner console) {
-        if(bookshelf.getQuantityBooks() < Bookshelf.MAX_QUANTITY_BOOKS) {
-            Book newBook = new Book();
+        if(bookshelf.getQuantityBooks() < Bookshelf.CAPACITY) {
             System.out.print("Введите автора: ");
-            newBook.setAuthor(console.nextLine());
+            String author = console.nextLine();
             System.out.print("Введите название книги: ");
-            newBook.setTitle(console.nextLine());
+            String title = console.nextLine();
             System.out.print("Введите год издания: ");
-            newBook.setPublishYear(Integer.parseInt(console.nextLine()));
+            int publishYear = Integer.parseInt(console.nextLine());
+            Book newBook = new Book(author, title, publishYear);
             bookshelf.add(newBook);
             System.out.println("Книга добавлена");
         } else {

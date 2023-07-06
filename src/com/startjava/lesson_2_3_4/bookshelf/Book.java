@@ -2,19 +2,14 @@ package com.startjava.lesson_2_3_4.bookshelf;
 
 public class Book {
 
-    private String author;
-    private String title;
-    private int publishYear;
+    private final String author;
+    private final String title;
+    private final int publishYear;
     private int lengthInfo;
 
-    public void setAuthor(String author) {
+    public Book(String author, String title, int publishYear) {
         this.author = author;
-    }
-    public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setPublishYear(int publishYear) {
         this.publishYear = publishYear;
     }
 
@@ -22,12 +17,12 @@ public class Book {
         lengthInfo = length;
     }
 
-    public int getLengthInfo() {
-        return lengthInfo;
-    }
-
     public String getTitle() {
         return title;
+    }
+
+    public int getLengthInfo() {
+        return lengthInfo;
     }
 
     public String toString() {

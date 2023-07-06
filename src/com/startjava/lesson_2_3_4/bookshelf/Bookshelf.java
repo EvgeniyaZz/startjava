@@ -4,26 +4,26 @@ import java.util.Arrays;
 
 public class Bookshelf {
 
-    static final int MAX_QUANTITY_BOOKS = 10;
+    static final int CAPACITY = 10;
     private int quantityBooks;
     private int lengthShelf;
 
-    private final Book[] books = new Book[MAX_QUANTITY_BOOKS];
+    private final Book[] books = new Book[CAPACITY];
 
     public int getQuantityBooks() {
         return quantityBooks;
     }
 
-    public int getQuantityFreeShelf() {
-        return (MAX_QUANTITY_BOOKS - quantityBooks);
-    }
-
-    public Book getBook(int index) {
-        return books[index];
-    }
-
     public int getLengthShelf() {
         return lengthShelf;
+    }
+
+    public int getQuantityFreeShelf() {
+        return (CAPACITY - quantityBooks);
+    }
+
+    public Book[] getBooks() {
+        return Arrays.copyOfRange(books, 0, quantityBooks);
     }
 
     public void add(Book newBook) {
