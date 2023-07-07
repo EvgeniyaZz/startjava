@@ -5,16 +5,14 @@ public class Book {
     private final String author;
     private final String title;
     private final int publishYear;
-    private int lengthInfo;
+    private final int lengthInfo;
+    private int position;
 
     public Book(String author, String title, int publishYear) {
         this.author = author;
         this.title = title;
         this.publishYear = publishYear;
-    }
-
-    public void setLengthInfo(int length) {
-        lengthInfo = length;
+        lengthInfo = toString().length();
     }
 
     public String getTitle() {
@@ -23,6 +21,14 @@ public class Book {
 
     public int getLengthInfo() {
         return lengthInfo;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     public String toString() {

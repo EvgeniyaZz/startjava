@@ -5,10 +5,9 @@ import java.util.Arrays;
 public class Bookshelf {
 
     static final int CAPACITY = 10;
+    private final Book[] books = new Book[CAPACITY];
     private int quantityBooks;
     private int lengthShelf;
-
-    private final Book[] books = new Book[CAPACITY];
 
     public int getQuantityBooks() {
         return quantityBooks;
@@ -23,40 +22,38 @@ public class Bookshelf {
     }
 
     public Book[] getBooks() {
-        return Arrays.copyOfRange(books, 0, quantityBooks);
+        return Arrays.copyOf(books, quantityBooks);
     }
 
     public void add(Book newBook) {
         books[quantityBooks] = newBook;
-        newBook.setLengthInfo(newBook.toString().length());
-        if(newBook.getLengthInfo() > lengthShelf) {
-            lengthShelf = newBook.getLengthInfo();
-        }
-        quantityBooks++;
+        newBook.setPosition(++quantityBooks);
+        setLengthShelf(newBook);
     }
 
-    public int find(String inputDate) {
+    public Book find(String title) {
         for(int i = 0; i < quantityBooks; i++) {
-            if(inputDate.equals(books[i].getTitle())) {
-                return ++i;
+            if(title.equals(books[i].getTitle())) {
+                return books[i];
             }
         }
-        return 0;
+        return null;
     }
 
-    public boolean delete(String inputDate) {
+    public boolean delete(String title) {
         for(int i = 0; i < quantityBooks; i++) {
-            if(inputDate.equals(books[i].getTitle())) {
+            if(title.equals(books[i].getTitle())) {
                 if(lengthShelf == books[i].toString().length()) {
                     lengthShelf = 0;
                     for(int j = 0; j < quantityBooks; j++) {
                         if(j == i) {
                             continue;
                         }
-                        if(books[j].toString().length() > lengthShelf) {
-                            lengthShelf = books[j].toString().length();
-                        }
+                        setLengthShelf(books[j]);
                     }
+                }
+                for(int j = quantityBooks - 1; j > i; j--) {
+                    books[j].setPosition(books[j].getPosition() - 1);
                 }
                 System.arraycopy(books, i + 1, books, i, (quantityBooks - 1 - i));
                 quantityBooks--;
@@ -70,5 +67,11 @@ public class Bookshelf {
         Arrays.fill(books, 0, quantityBooks, null);
         quantityBooks = 0;
         lengthShelf = 0;
+    }
+
+    private void setLengthShelf(Book book) {
+        if(book.getLengthInfo() > lengthShelf) {
+            lengthShelf = book.getLengthInfo();
+        }
     }
 }

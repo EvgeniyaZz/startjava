@@ -7,9 +7,9 @@ public class Control {
         Scanner console = new Scanner(System.in);
         Bookshelf bookshelf = new Bookshelf();
         do {
-            printBookshelf(bookshelf);
+            print(bookshelf);
             printMenu();
-            if (select(bookshelf, console, console.nextLine()).equals("5")) {
+            if(!select(bookshelf, console)) {
                 break;
             }
             System.out.print("Для продолжения работы нажмите Enter");
@@ -17,15 +17,13 @@ public class Control {
         } while(true);
     }
 
-    private static void printBookshelf(Bookshelf bookshelf) {
-        if(bookshelf.getQuantityBooks() != 0) {
+    private static void print(Bookshelf bookshelf) {
+        if(bookshelf.getQuantityBooks() > 0) {
             System.out.println("В шкафу " + bookshelf.getQuantityBooks() + " книги и свободно " +
                     bookshelf.getQuantityFreeShelf() + " полок");
             for(Book book : bookshelf.getBooks()) {
-                System.out.print("|");
-                System.out.print(book);
-                System.out.println(" ".repeat((bookshelf.getLengthShelf() - book.getLengthInfo())) +
-                        "|\n|" + "-".repeat(bookshelf.getLengthShelf()) + "|");
+                System.out.println("|" + book + " ".repeat((bookshelf.getLengthShelf() - book.getLengthInfo())) + "|");
+                System.out.println("|" + "-".repeat(bookshelf.getLengthShelf()) + "|");
             }
             if(bookshelf.getQuantityBooks() < Bookshelf.CAPACITY) {
                 System.out.println("|" + " ".repeat(bookshelf.getLengthShelf()) + "|");
@@ -47,8 +45,9 @@ public class Control {
         System.out.print("Введите 1, 2, 3, 4 или 5: ");
     }
 
-    private static String select(Bookshelf bookshelf, Scanner console, String input) {
-        switch(input) {
+    private static boolean select(Bookshelf bookshelf, Scanner console) {
+        String menuItem = console.nextLine();
+        switch(menuItem) {
             case "1" -> addBook(bookshelf, console);
             case "2" -> findBook(bookshelf, console);
             case "3" -> deleteBook(bookshelf, console);
@@ -56,13 +55,12 @@ public class Control {
                 bookshelf.clear();
                 System.out.println("Шкаф освобожден от книг");
             }
-            default -> {
-                if(!input.equals("5")) {
-                    System.out.println("Введенного пункта нет");
-                }
+            case "5" -> {
+                return false;
             }
+            default -> System.out.println("Введенного пункта нет");
         }
-        return input;
+        return true;
     }
 
     private static void addBook(Bookshelf bookshelf, Scanner console) {
@@ -83,9 +81,10 @@ public class Control {
 
     private static void findBook(Bookshelf bookshelf, Scanner console) {
         System.out.print("Введите название книги: ");
-        int numberShelf = bookshelf.find(console.nextLine());
-        if(numberShelf != 0) {
-            System.out.println("Книга на " + numberShelf + " полке");
+        Book book = bookshelf.find(console.nextLine());
+        if(book != null) {
+            System.out.println(book);
+            System.out.println("Книга на " + book.getPosition() + " полке");
         } else {
             System.out.println("Книга не найдена");
         }
