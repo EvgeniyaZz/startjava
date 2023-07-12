@@ -25,18 +25,14 @@ SELECT *
 \echo 'Информация о самом старом роботе:'
 SELECT * 
   FROM Jaegers 
- WHERE launch = (
-                 SELECT MIN(launch) 
-                   FROM Jaegers
-                 );
+ WHERE launch = (SELECT MIN(launch) 
+                   FROM Jaegers);
 
 \echo 'Роботы которые уничтожили больше всех kaiju:'
 SELECT * 
   FROM Jaegers 
- WHERE kaijuKill = (
-                    SELECT MAX(kaijuKill) 
-                      FROM Jaegers
-                    );
+ WHERE kaijuKill = (SELECT MAX(kaijuKill) 
+                      FROM Jaegers);
 
 \echo 'Средний вес роботов:'
 SELECT AVG(weight) 
